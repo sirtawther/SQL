@@ -1,0 +1,28 @@
+SELECT stock_location.complete_name, product_template.name, stock_quant.quantity, product_product.default_code
+FROM stock_quant
+JOIN product_product ON stock_quant.product_id = product_product.id
+JOIN product_template ON product_product.product_tmpl_id = product_template.id
+JOIN stock_location ON stock_quant.location_id = stock_location.id
+WHERE stock_quant.quantity < 0
+AND stock_location.complete_name IN ('S1WH/Stock','S2WH/Stock','S3WH/Stock','S4WH/Stock','S5WH/Stock','S6WH/Stock','S7WH/Stock','S8WH/Stock','S9WH/Stock','S10WH/Stock','S11WH/Stock','S12WH/Stock','S13WH/Stock','S14WH/Stock','S15WH/Stock','OSWH/Stock','WH/Stock')
+ORDER BY 
+  CASE stock_location.complete_name
+    WHEN 'S1WH/Stock' THEN 1
+    WHEN 'S2WH/Stock' THEN 2
+    WHEN 'S3WH/Stock' THEN 3
+    WHEN 'S4WH/Stock' THEN 4
+    WHEN 'S5WH/Stock' THEN 5
+    WHEN 'S6WH/Stock' THEN 6
+    WHEN 'S7WH/Stock' THEN 7
+    WHEN 'S8WH/Stock' THEN 8
+    WHEN 'S9WH/Stock' THEN 9
+    WHEN 'S10WH/Stock' THEN 10
+    WHEN 'S11WH/Stock' THEN 11
+    WHEN 'S12WH/Stock' THEN 12
+    WHEN 'S13WH/Stock' THEN 13
+    WHEN 'S14WH/Stock' THEN 14
+    WHEN 'S15WH/Stock' THEN 15
+    WHEN 'OSWH/Stock' THEN 16
+    WHEN 'WH/Stock' THEN 17
+    ELSE 18
+  END, stock_quant.quantity,product_product.default_code
